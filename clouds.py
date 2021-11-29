@@ -196,7 +196,6 @@ async def emergency(ctx, reason: None):
         em.add_field(name="Reason:", value=f"```{reason}```", inline=False)
         em.add_field(name="Triggered by:",
                      value=f"<@{ctx.author.id}> - `{ctx.author.id}`", inline=True)
-        em.set_footer(text='Kek')
 
         x = "<@&742501744206020798>"
         m = await ctx.send(x, embed=em)

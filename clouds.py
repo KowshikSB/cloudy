@@ -22,6 +22,7 @@ slash = SlashCommand(client, sync_commands=True)
 async def on_ready():
 
     await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.watching, name="you"))
+    client.load_extension("bumper")
     print("Ready!")
 
 guild_ids = [799526257506254868, 730269125028610118]

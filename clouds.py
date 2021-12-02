@@ -346,7 +346,7 @@ async def ban(ctx, member: discord.Member, *, reason=None):
     Content.set_footer(text=f'Banned by {ctx.author.name}',
                        icon_url='https://cdn.discordapp.com/emojis/915795784690196530.png?size=40')
     await ctx.send(embed=Content)
-    await member.ban(reason=reason)
+    await member.ban(reason=f'{reason} by {ctx.author.name}')
 
 
 @client.command()
@@ -377,7 +377,7 @@ async def kick(ctx, member: discord.Member, *, reason=None):
     Content.set_footer(text=f'Kicked by {ctx.author.name}',
                        icon_url='https://cdn.discordapp.com/emojis/915795784690196530.png?size=40')
     await ctx.send(embed=Content)
-    await member.kick(reason=reason)
+    await member.kick(reason=f'{reason} by {ctx.author.name}')
 
 
 client.run(os.environ['DISCORD_TOKEN'])

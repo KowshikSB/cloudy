@@ -364,7 +364,7 @@ async def unban(ctx, *, member):
                 color=0x2f3136, description=f"Unbanned {user.id}")
             Content.set_footer(
                 text=f'Unbanned by {ctx.author.name}', icon_url='https://cdn.discordapp.com/emojis/915795784690196530.png?size=40')
-            await ctx.send(f'Unbanned {user.mention}')
+
             await ctx.send(embed=Content)
             return
 

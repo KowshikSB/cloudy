@@ -339,7 +339,7 @@ async def poll(ctx, message, choice1, choice2, choice3=None, choice4=None):
 
 @client.command()
 @commands.has_permissions(ban_members=True)
-async def ban(self, ctx, member: discord.Member, *, reason=None):
+async def ban(ctx, member: discord.Member, *, reason=None):
 
     Content = discord.Embed(
         color=0x2f3136, description=f"Banned **{member.name}#{member.discriminator}** \n Reason - {reason}")
@@ -350,7 +350,7 @@ async def ban(self, ctx, member: discord.Member, *, reason=None):
 
 @client.command()
 @commands.has_permissions(administrator=True)
-async def unban(self, ctx, *, member):
+async def unban(ctx, *, member):
     banned_users = await ctx.guild.bans()
     member_name, member_discriminator = member.split("#")
 
@@ -369,7 +369,7 @@ async def unban(self, ctx, *, member):
 
 @client.command()
 @commands.has_permissions(kick_members=True)
-async def kick(self, ctx, member: discord.Member, *, reason=None):
+async def kick(ctx, member: discord.Member, *, reason=None):
     Content = discord.Embed(
         color=0x2f3136, description=f"Kicked **{member.name}#{member.discriminator}** \n Reason - {reason}")
     Content.set_footer(text=f'Kicked by {ctx.author.name}',

@@ -345,6 +345,7 @@ async def ban(ctx, member: discord.Member, *, reason=None):
         color=0x2f3136, description=f"Banned **{member.name}#{member.discriminator}** \n Reason - {reason}")
     Content.set_footer(text=f'Banned by {ctx.author.name}',
                        icon_url='https://cdn.discordapp.com/emojis/915795784690196530.png?size=40')
+    await ctx.send(embed=Content)
     await member.ban(reason=reason)
 
 
@@ -364,6 +365,7 @@ async def unban(ctx, *, member):
             Content.set_footer(
                 text=f'Unbanned by {ctx.author.name}', icon_url='https://cdn.discordapp.com/emojis/915795784690196530.png?size=40')
             await ctx.send(f'Unbanned {user.mention}')
+            await ctx.send(embed=Content)
             return
 
 
@@ -374,7 +376,7 @@ async def kick(ctx, member: discord.Member, *, reason=None):
         color=0x2f3136, description=f"Kicked **{member.name}#{member.discriminator}** \n Reason - {reason}")
     Content.set_footer(text=f'Kicked by {ctx.author.name}',
                        icon_url='https://cdn.discordapp.com/emojis/915795784690196530.png?size=40')
-
+    await ctx.send(embed=Content)
     await member.kick(reason=reason)
 
 

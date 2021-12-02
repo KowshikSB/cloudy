@@ -14,7 +14,7 @@ from discord_slash.model import SlashCommandPermissionType
 from discord.ext import commands
 from discord.ext.commands.core import command
 
-client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
+client = commands.Bot(command_prefix="^", intents=discord.Intents.all())
 slash = SlashCommand(client, sync_commands=True)
 
 
@@ -337,7 +337,7 @@ async def poll(ctx, message, choice1, choice2, choice3=None, choice4=None):
             await m.add_reaction('<:four:855099025292001341>')
 
 
-@commands.command()
+@client.command()
 @commands.has_permissions(ban_members=True)
 async def ban(self, ctx, member: discord.Member, *, reason=None):
 
@@ -348,7 +348,7 @@ async def ban(self, ctx, member: discord.Member, *, reason=None):
     await member.ban(reason=reason)
 
 
-@commands.command()
+@client.command()
 @commands.has_permissions(administrator=True)
 async def unban(self, ctx, *, member):
     banned_users = await ctx.guild.bans()
@@ -367,7 +367,7 @@ async def unban(self, ctx, *, member):
             return
 
 
-@commands.command()
+@client.command()
 @commands.has_permissions(kick_members=True)
 async def kick(self, ctx, member: discord.Member, *, reason=None):
     Content = discord.Embed(

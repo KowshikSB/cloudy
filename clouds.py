@@ -335,4 +335,47 @@ async def poll(ctx, message, choice1, choice2, choice3=None, choice4=None):
             await m.add_reaction('<:two:855099024923033621>')
             await m.add_reaction('<:three:855099025460428832>')
             await m.add_reaction('<:four:855099025292001341>')
+
+
+@commands.command()
+@commands.has_permissions(ban_members=True)
+async def ban(self, ctx, member: discord.Member, *, reason=None):
+
+    Content = discord.Embed(
+        color=0x2f3136, description=f"Banned **{member.name}#{member.discriminator}** \n Reason - {reason}")
+    Content.set_footer(text=f'Banned by {ctx.author.name}',
+                       icon_url='https://cdn.discordapp.com/emojis/915795784690196530.png?size=40')
+    await member.ban(reason=reason)
+
+
+@commands.command()
+@commands.has_permissions(administrator=True)
+async def unban(self, ctx, *, member):
+    banned_users = await ctx.guild.bans()
+    member_name, member_discriminator = member.split("#")
+
+    for ban_entry in banned_users:
+        user = ban_entry.user
+
+        if (user.name, user.discriminator) == (member_name, member_discriminator):
+            await ctx.guild.unban(user)
+            Content = discord.Embed(
+                color=0x2f3136, description=f"Unbanned {user.id}")
+            Content.set_footer(
+                text=f'Unbanned by {ctx.author.name}', icon_url='https://cdn.discordapp.com/emojis/915795784690196530.png?size=40')
+            await ctx.send(f'Unbanned {user.mention}')
+            return
+
+
+@commands.command()
+@commands.has_permissions(kick_members=True)
+async def kick(self, ctx, member: discord.Member, *, reason=None):
+    Content = discord.Embed(
+        color=0x2f3136, description=f"Kicked **{member.name}#{member.discriminator}** \n Reason - {reason}")
+    Content.set_footer(text=f'Kicked by {ctx.author.name}',
+                       icon_url='https://cdn.discordapp.com/emojis/915795784690196530.png?size=40')
+
+    await member.kick(reason=reason)
+
+
 client.run(os.environ['DISCORD_TOKEN'])
